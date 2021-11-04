@@ -15,7 +15,7 @@ public class TriangleTest {
     @ParameterizedTest
     @CsvSource({"3,4,5,6", "3,4,10,0", "3,10,5,0", "10,4,5,0"})
     @DisplayName("Позитивые проверки")
-    public void validAndNotTriangleTest(int a,int b, int c, double s) {
+    public void validAndNotTriangleTest(int a, int b, int c, double s) {
         double result = Triangle.sumNumbers(a, b, c);
         Assertions.assertEquals(result, s);
     }
