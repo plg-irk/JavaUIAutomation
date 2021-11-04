@@ -13,11 +13,10 @@ public class TriangleTest {
     private static Logger logger = LoggerFactory.getLogger(TriangleTest.class);
 
     @ParameterizedTest
-    @CsvSource({"3,4,5,6", "3,4,10,0", "3,10,5,0","10,4,5,0"})
+    @CsvSource({"3,4,5,6", "3,4,10,0", "3,10,5,0", "10,4,5,0"})
     @DisplayName("Позитивые проверки")
-    public void rigorousTest() {
-        double result = Triangle.sumNumbers(3, 4, 5);
-        Assertions.assertEquals(result, 6.0);
+    public void validAndNotTriangleTest(int a,int b, int c, double s) {
+        double result = Triangle.sumNumbers(a, b, c);
+        Assertions.assertEquals(result, s);
     }
-
 }
