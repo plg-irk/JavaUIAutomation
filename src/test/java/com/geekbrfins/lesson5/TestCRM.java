@@ -7,14 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class TestHomeWork5 {
+public class TestCRM {
 
     WebDriver driver;
     WebDriverWait webDriverWait;
@@ -64,10 +63,8 @@ public class TestHomeWork5 {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
                 "//span[contains(text(), 'Наименование')]")));
 
-        String st = "более чем 01.10.2021";
-        String st1 = driver.findElement(By.xpath("//strong[contains(text(), 'более чем 01.10.2021')]")).getText();
-        Assertions.assertEquals(st, st1);
-
+        Assertions.assertEquals("более чем 01.10.2021", driver.findElement(
+                By.xpath("//strong[contains(text(), 'более чем 01.10.2021')]")).getText());
     }
 
     @AfterEach
