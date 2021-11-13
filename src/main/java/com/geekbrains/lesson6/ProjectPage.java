@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProjectPage extends BaseView {
+public class ProjectPage extends BaseViewCRM {
     public ProjectPage(WebDriver driver) {
         super(driver);
     }

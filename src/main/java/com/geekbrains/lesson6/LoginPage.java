@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends BaseView {
+public class LoginPage extends BaseViewCRM {
 
     public LoginPage(WebDriver driver) {
         super(driver);
