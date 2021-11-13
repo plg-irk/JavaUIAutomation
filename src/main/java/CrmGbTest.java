@@ -40,7 +40,7 @@ public class CrmGbTest {
 
         List<WebElement> nameProject = driver.findElements(By.cssSelector(
                 ".string-cell.grid-cell.grid-body-cell.grid-body-cell-name"));
-        System.out.println("На странице " + nameProject.size() + " проектов");
+        System.out.println("На странице" + nameProject.size() + "проектов");
 
         Thread.sleep(5000);
         driver.quit();
