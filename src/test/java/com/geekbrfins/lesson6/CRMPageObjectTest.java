@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class PageObjectTest {
+public class CRMPageObjectTest {
 
     WebDriver driver;
     WebDriverWait webDriverWait;
@@ -28,13 +28,13 @@ public class PageObjectTest {
     }
 
     @Test
-    void loginTest() throws InterruptedException {
+    void testCRM() throws InterruptedException {
         new LoginPage(driver)
                 .fillLogin("Applanatest1")
                 .fillPassword("Student2020!")
                 .submitLogin();
 
-        new MainPage(driver).navigationBar.openNavBarItem("Проекты");
+        new MainPageCRM(driver).navigationBar.openNavBarItem("Проекты");
         new ExpensesSubMenu(driver).setExpensesSubMenuItemClick();
 
         new ProjectPage(driver).setButtonMyProjectClick();

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class NavigationBar extends BaseView {
+public class NavigationBar extends BaseViewCRM {
     ExpensesSubMenu expensesSubMenu;
 
     public NavigationBar(WebDriver driver) {
