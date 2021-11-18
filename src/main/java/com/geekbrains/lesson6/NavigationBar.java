@@ -1,5 +1,6 @@
 package com.geekbrains.lesson6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -19,6 +20,7 @@ public class NavigationBar extends BaseViewCRM {
 
     public List<WebElement> navBarItem;
 
+    @Step("Открываем навигационный бар")
     public void openNavBarItem(String itemName) {
         Actions actions = new Actions(driver);
         WebElement item = navBarItem.stream()
