@@ -1,5 +1,6 @@
 package com.geekbrains.lesson6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,7 @@ public class MyProjectPage extends BaseViewCRM {
     @FindBy(xpath = "//div[contains(text(), 'Создан в')]")
     public WebElement createElement;
 
+    @Step("Выбираем поле 'Создан в'")
     public void setCreateElementClick() {
         createElement.click();
     }
@@ -28,6 +30,7 @@ public class MyProjectPage extends BaseViewCRM {
     @FindBy(css = ".filter-start-date input[data-toggle='dropdown']")
     public WebElement inputData;
 
+    @Step("Вводим дату")
     public MyProjectPage setInputData(String option) {
         inputData.sendKeys(option);
         return this;
@@ -36,6 +39,7 @@ public class MyProjectPage extends BaseViewCRM {
     @FindBy(xpath = "//button[contains(text(), 'Обновить')]")
     public WebElement buttonReload;
 
+    @Step("Нажимаем на кнопку 'Обновить'")
     public void buttonReloadClick() {
         buttonReload.click();
     }
