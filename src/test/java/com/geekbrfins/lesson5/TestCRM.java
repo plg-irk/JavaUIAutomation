@@ -1,21 +1,39 @@
+package com.geekbrfins.lesson5;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class CrmGbTest {
-    public static void main(String[] args) throws InterruptedException {
+public class TestCRM {
+
+    WebDriver driver;
+    WebDriverWait webDriverWait;
+
+    @BeforeAll
+    static void setupDriver() {
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://crm.geekbrains.space/user/login");
+    }
+
+    @BeforeEach
+    void initBrowser() {
+        driver = new ChromeDriver();
+        webDriverWait = new WebDriverWait(driver, 5);
         login(driver);
+    }
+
+    @Test
+    void crmGbTest() throws InterruptedException {
+
+        driver.get("https://crm.geekbrains.space/");
 
         List<WebElement> menuItems = driver.findElements(By.xpath("//ul[@class='nav nav-multilevel main-menu']/li/a"));
 
@@ -25,12 +43,16 @@ public class CrmGbTest {
         actions.moveToElement(expensesMenuItem).build().perform();
         driver.findElement(By.xpath("//span[.='Проекты']")).click();
 
-        Thread.sleep(2000);
         driver.findElement(By.xpath("//a[.='Мои проекты']")).click();
 
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//div[contains(text(), 'Создан в')]")));
         driver.findElement(By.xpath("//div[contains(text(), 'Создан в')]")).click();
 
-        Select selectDataPeriod = new Select(driver.findElement(By.cssSelector("[name=\"createdAt\"]")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
+                "[name=\"createdAt\"]")));
+        Select selectDataPeriod = new Select(driver.findElement(By.cssSelector(
+                "[name=\"createdAt\"]")));
         selectDataPeriod.selectByVisibleText("больше чем");
 
         driver.findElement(By.cssSelector(
@@ -38,18 +60,28 @@ public class CrmGbTest {
 
         driver.findElement(By.xpath("//button[contains(text(), 'Обновить')]")).click();
 
-        List<WebElement> nameProject = driver.findElements(By.cssSelector(
-                ".string-cell.grid-cell.grid-body-cell.grid-body-cell-name"));
-        System.out.println("На странице " + nameProject.size() + " проектов");
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//span[contains(text(), 'Наименование')]")));
 
-        Thread.sleep(5000);
+        Assertions.assertEquals("более чем 01.10.2021", driver.findElement(
+                By.xpath("//strong[contains(text(), 'более чем 01.10.2021')]")).getText());
+    }
+
+    @AfterEach
+    void tearDown() {
         driver.quit();
     }
 
     static void login(WebDriver driver) {
+        driver.get("https://crm.geekbrains.space/user/login");
         WebElement element = driver.findElement(By.id("prependedInput"));
         element.sendKeys("Applanatest1");
         driver.findElement(By.id("prependedInput2")).sendKeys("Student2020!");
         driver.findElement(By.id("_submit")).click();
     }
+
 }
+
+
+
+
